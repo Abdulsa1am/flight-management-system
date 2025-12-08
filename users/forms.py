@@ -61,6 +61,12 @@ class PassengerCreationForm(UserCreationForm):
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirm Password'})
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("This email is already registered. Please login instead.")
+        return email
+    
     def clean_nationality(self):
 
         nid = self.cleaned_data.get('nationality')

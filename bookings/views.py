@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
@@ -6,7 +7,9 @@ from bookings.models import *
 from flights.models import Flight
 from users.models import PassengerProfile
 from .forms import *
+from django.template.loader import get_template
 
+from xhtml2pdf import pisa
 
 
 # Create your views here.
@@ -175,3 +178,24 @@ def booking_details(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id, passenger__user=request.user)
     
     return render(request, 'bookings/booking_details.html', {'booking': booking})
+
+@login_required
+def download_ticket_pdf(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id, passenger__user=request.user)
+    
+    # It just looks for this file name.
+    # As long as you updated the content of this file, the new design will show up.
+    template_path = 'bookings/ticket_pdf.html' 
+    
+    context = {'booking': booking}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="ticket_{booking.booking_id}.pdf"'
+    
+    template = get_template(template_path)
+    html = template.render(context)
+    
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        
+    return response

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 11pt;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        /* Utility Helpers */
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .bold { font-weight: bold; }
+        .text-blue { color: #0056b3; }
+        .uppercase { text-transform: uppercase; }
+
+        /* Header Section */
+        .header {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .company-name { font-size: 18pt; font-weight: bold; }
+        .document-type { font-size: 12pt; color: #666; margin-top: 5px; }
+
+        /* Section Boxes */
+        .section-box {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .section-title {
+            background-color: #eee;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            margin: -10px -10px 10px -10px; /* Stretch to edges */
+        }
+
+        /* Data Tables - The most reliable way to layout PDF data */
+        table { width: 100%; border-collapse: collapse; }
+        td { vertical-align: top; padding: 4px; }
+        
+        .info-label { color: #666; font-size: 9pt; }
+        .info-value { font-size: 11pt; font-weight: bold; }
+
+        /* Passenger Table */
+        .passenger-table th {
+            text-align: left;
+            background-color: #0056b3;
+            color: white;
+            padding: 6px;
+            font-size: 10pt;
+        }
+        .passenger-table td {
+            border-bottom: 1px solid #ddd;
+            padding: 8px 6px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+            font-size: 8pt;
+            text-align: center;
+            color: #666;
+        }
+        
+        /* Page Break Helper */
+        .page-break { page-break-after: always; }
+    </style>
+</head>
+<body>
+
+    {% for ticket in booking.tickets.all %}
+
+    <div class="header">
+        <table style="border: none;">
+            <tr>
+                <td>
+                    <div class="company-name">Flight Management System</div>
+                    <div class="document-type">Electronic Ticket & Itinerary</div>
+                </td>
+                <td class="text-right">
+                    <div class="info-label">BOOKING REFERENCE</div>
+                    <div style="font-size: 16pt; font-weight: bold;">#{{ booking.booking_id }}</div>
+                    <div class="info-label" style="margin-top: 5px;">Issued Date: {{ booking.booking_date|date:"Y-m-d" }}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-box">
+        <div class="section-title">FLIGHT INFORMATION</div>
+        
+        <table>
+            <tr>
+                <td width="33%">
+                    <div class="info-label">DEPARTURE</div>
+                    <div class="info-value text-blue">{{ booking.flight.departure_airport.city }}</div>
+                    <div style="font-size: 14pt; font-weight: bold;">{{ booking.flight.departure_airport.airport_code }}</div>
+                    <div style="margin-top: 5px;">{{ booking.flight.departure_datetime|date:"D, d M Y" }}</div>
+                    <div class="bold">{{ booking.flight.departure_datetime|time:"H:i" }}</div>
+                </td>
+                <td width="33%" class="text-center">
+                    <div class="info-label">FLIGHT</div>
+                    <div style="font-size: 14pt; font-weight: bold; margin-top: 5px;">{{ booking.flight.flight_number }}</div>
+                    <div style="margin-top: 5px; font-size: 9pt;">{{ booking.flight.aircraft.model }}</div>
+                </td>
+                <td width="33%" class="text-right">
+                    <div class="info-label">ARRIVAL</div>
+                    <div class="info-value text-blue">{{ booking.flight.arrival_airport.city }}</div>
+                    <div style="font-size: 14pt; font-weight: bold;">{{ booking.flight.arrival_airport.airport_code }}</div>
+                    <div style="margin-top: 5px;">{{ booking.flight.arrival_datetime|date:"D, d M Y" }}</div>
+                    <div class="bold">{{ booking.flight.arrival_datetime|time:"H:i" }}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-box">
+        <div class="section-title">PASSENGER DETAILS</div>
+        
+        <table class="passenger-table">
+            <thead>
+                <tr>
+                    <th width="40%">Passenger Name</th>
+                    <th width="20%">Passport</th>
+                    <th width="15%">Class</th>
+                    <th width="10%">Seat</th>
+                    <th width="15%">Ticket ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ ticket.passenger_name }}</td>
+                    <td>{{ ticket.passport }}</td>
+                    <td>{{ booking.seat_class }}</td>
+                    <td style="font-size: 12pt; font-weight: bold;">{{ ticket.seat_number }}</td>
+                    <td>{{ ticket.ticket_id }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="font-size: 9pt; color: #555; background-color: #f9f9f9; padding: 10px; border: 1px solid #eee;">
+        <strong>Important Information:</strong>
+        <ul style="margin-top: 5px; padding-left: 20px;">
+            <li>Please arrive at the airport at least 2 hours before departure.</li>
+            <li>Boarding closes 45 minutes before departure.</li>
+            <li>This document serves as your confirmed itinerary and receipt.</li>
+            <li>Total Amount Paid: <strong>{{ booking.total_price }} SAR</strong></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        Flight Management System
+    </div>
+
+    {% if not forloop.last %}
+        <div class="page-break"></div>
+    {% endif %}
+
+    {% endfor %}
+
+</body>
+</html>

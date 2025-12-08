@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from .forms import PassengerCreationForm, EmailAuthenticationForm
 from .models import PassengerProfile, Admin
 from flights.models import Airport
+from django.utils import timezone
+from bookings.models import Booking
 
 
 
@@ -75,12 +77,29 @@ def user_logout(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def passenger_dashboard(request):
-    passenger = None
-    bookings = None
-
+    """
+    The main dashboard view.
+    1. Loads airports for the 'Search Flight' widget.
+    2. Loads upcoming bookings for the 'My Upcoming Flights' widget.
+    """
+    
     airports = Airport.objects.all().order_by('city')
 
-    return render(request, 'users/passenger_dashboard.html', context={'airports': airports})
+    now = timezone.now()
+    
+    upcoming_bookings = Booking.objects.filter(
+        passenger__user=request.user,     
+        flight__departure_datetime__gt=now  
+    ).exclude(
+        status='Cancelled'                  
+    ).order_by('flight__departure_datetime')[:3] 
+
+    context = {
+        'airports': airports,
+        'upcoming_bookings': upcoming_bookings
+    }
+
+    return render(request, 'users/passenger_dashboard.html', context)
 
 
 @login_required
