@@ -35,7 +35,9 @@ class BookingTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_seat_selection_view(self):
-        response = self.client.get(reverse('seat_selection'), {'flight_id': 'TS123'})
+
+        url = reverse('seat_selection', args=['TS123', 'Economy'])
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_passenger_details_post(self):
@@ -106,8 +108,9 @@ class BookingTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_seat_selection_invalid_flight(self):
-        # Accessing seat map for fake flight
-        response = self.client.get(reverse('seat_selection'), {'flight_id': 'FAKE999'})
+        
+        url = reverse('seat_selection', args=['FAKE999', 'Economy'])
+        response = self.client.get(url)
         # View uses get_object_or_404 -> 404
         self.assertEqual(response.status_code, 404)
 
