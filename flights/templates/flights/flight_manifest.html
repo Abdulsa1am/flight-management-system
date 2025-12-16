@@ -81,10 +81,10 @@
                     <div class="input-group">
                         <span class="input-group-text bg-light">Sort By</span>
                         <select name="sort" class="form-select" onchange="this.form.submit()">
-                            <option value="seat" {% if sort_param=='seat' or not sort_param %}selected{% endif %}>
+                            <option value="seat" {% if sort_param == 'seat' or not sort_param %}selected{% endif %}>
                                 Seat Number (A-Z)
                             </option>
-                            <option value="name" {% if sort_param=='name' %}selected{% endif %}>
+                            <option value="name" {% if sort_param == 'name' %}selected{% endif %}>
                                 Passenger Name (A-Z)
                             </option>
                         </select>
