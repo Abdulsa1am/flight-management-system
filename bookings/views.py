@@ -26,9 +26,26 @@ def my_bookings(request):
         HttpResponse: The rendered 'my_bookings' page with the user's booking history.
     """
 
-    user_bookings = Booking.objects.filter(passenger__user=request.user).order_by('-booking_date')
+    try:
+            passenger = request.user.passenger_profile
+            now = timezone.now()
+            
 
-    return render(request, 'bookings/my_bookings.html', {'bookings': user_bookings})
+            all_bookings = Booking.objects.filter(passenger=passenger).select_related('flight').order_by('-booking_date')
+
+
+            upcoming_bookings = all_bookings.filter(flight__departure_datetime__gte=now)
+            past_bookings = all_bookings.filter(flight__departure_datetime__lt=now)
+            
+    except Exception:
+        upcoming_bookings = []
+        past_bookings = []
+
+    context = {
+        'upcoming_bookings': upcoming_bookings,
+        'past_bookings': past_bookings
+    }
+    return render(request, 'bookings/my_bookings.html', context)
 
 
 @login_required
