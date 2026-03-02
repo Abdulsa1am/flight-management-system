@@ -95,55 +95,63 @@ A comprehensive web-based application for managing flight schedules, bookings, a
 
 ## 🖼️ HTML Templates (28 Pages)
 
-The project contains **28 HTML template pages** organised by Django app:
+The project contains **28 HTML template pages** organised by Django app.
+The **Designer** column shows who authored each page (✍️ = designed by [@Abdulsa1am](https://github.com/Abdulsa1am)).
 
 ### Base (1 page)
-| Template | Description |
-|---|---|
-| `templates/base.html` | Global base layout inherited by all other pages |
+| Template | Description | Designer |
+|---|---|---|
+| `templates/base.html` | Global base layout inherited by all other pages | @Fadilullah-Almohammed |
 
 ### Users App (10 pages)
-| Template | Description |
-|---|---|
-| `users/login.html` | User login page |
-| `users/passenger_register.html` | New passenger registration form |
-| `users/profile.html` | Logged-in user profile page |
-| `users/passenger_profile.html` | Public/admin view of a passenger's profile |
-| `users/admin_dashboard.html` | Administrator dashboard overview |
-| `users/passenger_dashboard.html` | Passenger dashboard with upcoming flights |
-| `users/forgot_password.html` | Password reset request form |
-| `users/password_reset_done.html` | Confirmation that reset email was sent |
-| `users/password_reset_confirm.html` | New-password entry form (from reset link) |
-| `users/password_reset_complete.html` | Success page after password reset |
+| Template | Description | Designer |
+|---|---|---|
+| `users/login.html` | User login page | ✍️ @Abdulsa1am |
+| `users/passenger_register.html` | New passenger registration form | ✍️ @Abdulsa1am |
+| `users/profile.html` | Logged-in user profile page | @Fadilullah-Almohammed |
+| `users/passenger_profile.html` | Public/admin view of a passenger's profile | @Fadilullah-Almohammed |
+| `users/admin_dashboard.html` | Administrator dashboard overview | ✍️ @Abdulsa1am |
+| `users/passenger_dashboard.html` | Passenger dashboard with upcoming flights | ✍️ @Abdulsa1am |
+| `users/forgot_password.html` | Password reset request form | @Fadilullah-Almohammed |
+| `users/password_reset_done.html` | Confirmation that reset email was sent | @Fadilullah-Almohammed |
+| `users/password_reset_confirm.html` | New-password entry form (from reset link) | @Fadilullah-Almohammed |
+| `users/password_reset_complete.html` | Success page after password reset | @Fadilullah-Almohammed |
 
 ### Flights App (10 pages)
-| Template | Description |
-|---|---|
-| `flights/search_flight.html` | Flight search form |
-| `flights/flight_results.html` | Search results listing |
-| `flights/flight_details.html` | Detailed view of a single flight |
-| `flights/flights_management.html` | Admin flight management list |
-| `flights/add_new_flight.html` | Form to add a new flight |
-| `flights/edit_flight.html` | Form to edit an existing flight |
-| `flights/view_flights.html` | Public/passenger flight listing |
-| `flights/flight_manifest.html` | Passenger manifest for a flight |
-| `flights/reports.html` | Analytics and reports page |
-| `flights/report_pdf.html` | PDF-renderable report template |
+| Template | Description | Designer |
+|---|---|---|
+| `flights/search_flight.html` | Flight search form | @Fadilullah-Almohammed |
+| `flights/flight_results.html` | Search results listing | ✍️ @Abdulsa1am |
+| `flights/flight_details.html` | Detailed view of a single flight | ✍️ @Abdulsa1am |
+| `flights/flights_management.html` | Admin flight management list | @Fadilullah-Almohammed |
+| `flights/add_new_flight.html` | Form to add a new flight | @Fadilullah-Almohammed |
+| `flights/edit_flight.html` | Form to edit an existing flight | @Fadilullah-Almohammed |
+| `flights/view_flights.html` | Public/passenger flight listing | @Fadilullah-Almohammed |
+| `flights/flight_manifest.html` | Passenger manifest for a flight | @Fadilullah-Almohammed |
+| `flights/reports.html` | Analytics and reports page | @Fadilullah-Almohammed |
+| `flights/report_pdf.html` | PDF-renderable report template | @Fadilullah-Almohammed |
 
 ### Bookings App (6 pages)
-| Template | Description |
-|---|---|
-| `bookings/seat_selection.html` | Seat selection during booking |
-| `bookings/passenger_details.html` | Enter passenger details for booking |
-| `bookings/booking_confirmation.html` | Booking confirmed summary page |
-| `bookings/booking_details.html` | Detail view of a single booking |
-| `bookings/my_bookings.html` | Passenger's booking history |
-| `bookings/ticket_pdf.html` | PDF-renderable ticket template |
+| Template | Description | Designer |
+|---|---|---|
+| `bookings/seat_selection.html` | Seat selection during booking | ✍️ @Abdulsa1am |
+| `bookings/passenger_details.html` | Enter passenger details for booking | @Fadilullah-Almohammed |
+| `bookings/booking_confirmation.html` | Booking confirmed summary page | @Fadilullah-Almohammed |
+| `bookings/booking_details.html` | Detail view of a single booking | @Fadilullah-Almohammed |
+| `bookings/my_bookings.html` | Passenger's booking history | @Fadilullah-Almohammed |
+| `bookings/ticket_pdf.html` | PDF-renderable ticket template | @Fadilullah-Almohammed |
 
 ### Payments App (1 page)
-| Template | Description |
-|---|---|
-| `payments/process_payment.html` | Payment processing page |
+| Template | Description | Designer |
+|---|---|---|
+| `payments/process_payment.html` | Payment processing page | @Fadilullah-Almohammed |
+
+> **@Abdulsa1am designed 7 HTML pages** (marked ✍️ above):
+> `login.html`, `passenger_register.html`, `admin_dashboard.html`, `passenger_dashboard.html`,
+> `flight_results.html`, `flight_details.html`, and `seat_selection.html` —
+> created in commit [`f6c4bee`](https://github.com/Abdulsa1am/flight-management-system/commit/f6c4beee9d00c3f1adb25bd0e22214dbe8f96960) ("Front end #6").
+> An additional 8 pages were later refactored/cleaned up by @Abdulsa1am in commit
+> [`e1c79aa`](https://github.com/Abdulsa1am/flight-management-system/commit/e1c79aab7fb0bf7cbdab543c646cec2bbb25af52) ("Refactor: cleanup of HTML").
 
 ---
 
