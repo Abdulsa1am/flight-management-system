@@ -147,6 +147,27 @@ The project contains **28 HTML template pages** organised by Django app:
 
 ---
 
+## 👥 Contributors & Commit History
+
+| Contributor | Personal Commits | Role |
+|---|---|---|
+| [@Abdulsa1am](https://github.com/Abdulsa1am) | **6** | Repository Owner |
+| [@Fadilullah-Almohammed](https://github.com/Fadilullah-Almohammed) | multiple | Collaborator |
+| [@a7-u](https://github.com/a7-u) | multiple | Collaborator |
+
+### Commits made personally by @Abdulsa1am (6 commits)
+
+| # | SHA | Message | Date |
+|---|---|---|---|
+| 1 | [`e64092e`](https://github.com/Abdulsa1am/flight-management-system/commit/e64092eeb1aac08e1a7027fc2f1b4c0cad7d7fef) | more documentations | 2025-12-15 |
+| 2 | [`e1c79aa`](https://github.com/Abdulsa1am/flight-management-system/commit/e1c79aab7fb0bf7cbdab543c646cec2bbb25af52) | Refactor: cleanup of HTML | 2025-12-15 |
+| 3 | [`cbf6711`](https://github.com/Abdulsa1am/flight-management-system/commit/cbf67114a046d4fa03d845cb41fc54dce57abc5e) | Refactor: Update docstrings to Google Style and remove legacy comments | 2025-12-15 |
+| 4 | [`68ef435`](https://github.com/Abdulsa1am/flight-management-system/commit/68ef43502dac8e9b5145b4cbcad05e8ebc37dc1c) | Refactor: Update docstrings to Google Style and remove legacy comments | 2025-12-15 |
+| 5 | [`c80ce5a`](https://github.com/Abdulsa1am/flight-management-system/commit/c80ce5a984501b8d3568ffff7e419b3d8f39c72e) | Add unit tests for all apps | 2025-12-14 |
+| 6 | [`f6c4bee`](https://github.com/Abdulsa1am/flight-management-system/commit/f6c4beee9d00c3f1adb25bd0e22214dbe8f96960) | Front end (#6) | 2025-11-16 |
+
+---
+
 ## 📄 Key Dependencies
 
 * **Django 5.2.7**: The core web framework.
