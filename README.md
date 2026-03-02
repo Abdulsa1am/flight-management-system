@@ -93,6 +93,60 @@ A comprehensive web-based application for managing flight schedules, bookings, a
 2.  Log in with your new credentials.
 3.  You will be redirected to the **Passenger Dashboard** to search and book flights.
 
+## 🖼️ HTML Templates (28 Pages)
+
+The project contains **28 HTML template pages** organised by Django app:
+
+### Base (1 page)
+| Template | Description |
+|---|---|
+| `templates/base.html` | Global base layout inherited by all other pages |
+
+### Users App (10 pages)
+| Template | Description |
+|---|---|
+| `users/login.html` | User login page |
+| `users/passenger_register.html` | New passenger registration form |
+| `users/profile.html` | Logged-in user profile page |
+| `users/passenger_profile.html` | Public/admin view of a passenger's profile |
+| `users/admin_dashboard.html` | Administrator dashboard overview |
+| `users/passenger_dashboard.html` | Passenger dashboard with upcoming flights |
+| `users/forgot_password.html` | Password reset request form |
+| `users/password_reset_done.html` | Confirmation that reset email was sent |
+| `users/password_reset_confirm.html` | New-password entry form (from reset link) |
+| `users/password_reset_complete.html` | Success page after password reset |
+
+### Flights App (10 pages)
+| Template | Description |
+|---|---|
+| `flights/search_flight.html` | Flight search form |
+| `flights/flight_results.html` | Search results listing |
+| `flights/flight_details.html` | Detailed view of a single flight |
+| `flights/flights_management.html` | Admin flight management list |
+| `flights/add_new_flight.html` | Form to add a new flight |
+| `flights/edit_flight.html` | Form to edit an existing flight |
+| `flights/view_flights.html` | Public/passenger flight listing |
+| `flights/flight_manifest.html` | Passenger manifest for a flight |
+| `flights/reports.html` | Analytics and reports page |
+| `flights/report_pdf.html` | PDF-renderable report template |
+
+### Bookings App (6 pages)
+| Template | Description |
+|---|---|
+| `bookings/seat_selection.html` | Seat selection during booking |
+| `bookings/passenger_details.html` | Enter passenger details for booking |
+| `bookings/booking_confirmation.html` | Booking confirmed summary page |
+| `bookings/booking_details.html` | Detail view of a single booking |
+| `bookings/my_bookings.html` | Passenger's booking history |
+| `bookings/ticket_pdf.html` | PDF-renderable ticket template |
+
+### Payments App (1 page)
+| Template | Description |
+|---|---|
+| `payments/process_payment.html` | Payment processing page |
+
+---
+
 ## 📄 Key Dependencies
 
 * **Django 5.2.7**: The core web framework.
